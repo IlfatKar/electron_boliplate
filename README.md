@@ -1,3 +1,8 @@
+If NODE MODULE VERSION error need
+Run ./node_modules/.bin/electron-rebuild (.\node_modules\.bin\electron-rebuild.cmd for Windows) to rebuild everything
+
+---
+
 <img src=".erb/img/erb-banner.svg" width="100%" />
 
 <br>

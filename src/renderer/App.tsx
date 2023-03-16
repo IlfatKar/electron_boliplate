@@ -1,8 +1,13 @@
+import { createContext, useContext } from 'react';
 import { MemoryRouter as Router, Routes, Route } from 'react-router-dom';
 import icon from '../../assets/icon.svg';
 import './App.css';
+import state from './state';
+
+const StateContext = createContext(state);
 
 function Hello() {
+  const st = useContext(StateContext);
   return (
     <div>
       <div className="Hello">
@@ -41,10 +46,12 @@ function Hello() {
 
 export default function App() {
   return (
-    <Router>
-      <Routes>
-        <Route path="/" element={<Hello />} />
-      </Routes>
-    </Router>
+    <StateContext.Provider value={state}>
+      <Router>
+        <Routes>
+          <Route path="/" element={<Hello />} />
+        </Routes>
+      </Router>
+    </StateContext.Provider>
   );
 }

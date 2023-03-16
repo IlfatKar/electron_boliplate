@@ -12,6 +12,7 @@ import path from 'path';
 import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+import Database from 'better-sqlite3';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
 
@@ -24,11 +25,15 @@ class AppUpdater {
 }
 
 let mainWindow: BrowserWindow | null = null;
+const db = new Database(path.join(__dirname, 'db.db'), {
+  verbose: console.log,
+});
 
 ipcMain.on('ipc-example', async (event, arg) => {
   const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
   console.log(msgTemplate(arg));
-  event.reply('ipc-example', msgTemplate('pong'));
+  const row = db.prepare('SELECT * FROM test').all();
+  event.reply('ipc-example', row || 'err');
 });
 
 if (process.env.NODE_ENV === 'production') {
@@ -96,6 +101,7 @@ const createWindow = async () => {
 
   mainWindow.on('closed', () => {
     mainWindow = null;
+    db.close();
   });
 
   const menuBuilder = new MenuBuilder(mainWindow);
