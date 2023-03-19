@@ -12,6 +12,7 @@ import path from 'path';
 import { app, BrowserWindow, shell, ipcMain } from 'electron';
 import { autoUpdater } from 'electron-updater';
 import log from 'electron-log';
+import { IClient } from 'renderer/components/Clients/AddClient';
 import Database from 'better-sqlite3';
 import MenuBuilder from './menu';
 import { resolveHtmlPath } from './util';
@@ -29,11 +30,35 @@ const db = new Database(path.join(__dirname, 'db.db'), {
   verbose: console.log,
 });
 
-ipcMain.on('ipc-example', async (event, arg) => {
-  const msgTemplate = (pingPong: string) => `IPC test: ${pingPong}`;
-  console.log(msgTemplate(arg));
-  const row = db.prepare('SELECT * FROM test').all();
-  event.reply('ipc-example', row || 'err');
+ipcMain.on('login', async (e, arg) => {
+  const row = db
+    .prepare('SELECT id FROM users WHERE login = ? AND password = ?')
+    .get(arg[0], arg[1]);
+  e.reply('login', row);
+});
+
+ipcMain.on('addClient', async (e, arg) => {
+  const f: IClient = arg[0];
+  db.prepare(
+    'INSERT INTO clients (soname, name, patronymic, birth, city, street, house, floor, phone, email, image) VALUES (?,?,?,?,?,?,?,?,?,?,?)'
+  ).run(
+    f.soname,
+    f.name,
+    f.patronymic,
+    f.birth,
+    f.city,
+    f.street,
+    f.house,
+    f.floor,
+    f.phone,
+    f.email,
+    f.image
+  );
+});
+
+ipcMain.on('getClients', async (e) => {
+  const rows = db.prepare('SELECT * FROM clients').all();
+  e.reply('getClients', rows);
 });
 
 if (process.env.NODE_ENV === 'production') {

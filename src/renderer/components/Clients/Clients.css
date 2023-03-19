@@ -1,0 +1,65 @@
+.Clients {
+  width: 100%;
+  height: 100%;
+}
+
+.Clients h2 {
+  margin-bottom: 10px;
+}
+
+.table {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  max-height: 70vh;
+  overflow: auto;
+  position: relative;
+}
+
+.row {
+  display: flex;
+  border-bottom: 1px solid #121212;
+}
+
+.row > * {
+  width: calc(100% / 6);
+  padding: 10px;
+}
+
+.btnWrapper {
+  width: 100%;
+  text-align: right;
+}
+.Clients button {
+  margin-top: 10px;
+}
+
+.AddClient {
+  width: 100%;
+}
+
+.AddClient h2 {
+  margin-bottom: 10px;
+}
+
+.AddClient button {
+  margin-top: 5px;
+}
+
+.AddClient .form {
+  display: flex;
+  width: 100%;
+  min-width: 500px;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.AddClient .form label {
+  display: block;
+  width: 100%;
+}
+
+.AddClient .form label > * {
+  display: inline-block;
+  width: 50%;
+}
