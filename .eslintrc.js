@@ -10,6 +10,7 @@ module.exports = {
     'import/no-import-module-exports': 'off',
     'jsx-a11y/label-has-associated-control': 'off',
     'react/button-has-type': 'off',
+    'no-shadow': 'off',
   },
   parserOptions: {
     ecmaVersion: 2020,

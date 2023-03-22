@@ -2,7 +2,29 @@
 /* eslint no-unused-vars: off */
 import { contextBridge, ipcRenderer, IpcRendererEvent } from 'electron';
 
-export type Channels = 'ipc-example' | 'login' | 'getClients' | 'addClient';
+export type Channels =
+  | 'AddOilObject'
+  | 'GetOilObjects'
+  | 'Login'
+  | 'RemoveOilObjects'
+  | 'GetDevices'
+  | 'AddDevice'
+  | 'EditDevice'
+  | 'RemoveDevices'
+  | 'GetServices'
+  | 'AddService'
+  | 'EditService'
+  | 'RemoveServices'
+  | 'EditOilObject'
+  | 'GetDevicesTypes'
+  | 'AddDevicesTypes'
+  | 'EditDevicesTypes'
+  | 'RemoveDevicesTypes'
+  | 'EditDevicesTypes'
+  | 'GetPoverka'
+  | 'AddPoverka'
+  | 'RemovePoverka'
+  | 'EditPoverka';
 
 const electronHandler = {
   ipcRenderer: {

@@ -1,0 +1,28 @@
+.reports nav{
+    display: flex;
+    justify-content: space-between;
+margin-bottom: 5px;
+}
+
+.reports h3{
+    margin-top: 5px;
+    margin-bottom: 5px;
+    font-size: 1.5rem;
+}
+
+.reports .list {
+    display: flex;
+    flex-direction: column;
+    gap:5px;
+}
+
+.reports .list .item{
+    padding: 10px 15px;
+    border-radius: 15px;
+    border: 1px solid;
+    line-height: 1.5rem;
+}
+
+.print nav, .print button{
+    display: none;
+}   

@@ -10,7 +10,7 @@
 body {
   position: relative;
   color: white;
-  height: 100vh;
+  min-height: 100vh;
   background: linear-gradient(
     200.96deg,
     #fedc2a -29.09%,
@@ -18,7 +18,7 @@ body {
     #7a2c9e 129.35%
   );
   font-family: sans-serif;
-  overflow-y: hidden;
+  overflow-y: auto;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,7 +73,7 @@ a:hover {
   gap: 20px;
 }
 
-input {
+input , select{
   width: 250px;
   padding: 10px 15px;
   border-radius: 10px;
